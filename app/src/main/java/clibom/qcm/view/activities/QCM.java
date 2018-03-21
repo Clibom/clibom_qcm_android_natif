@@ -1,17 +1,47 @@
-package clibom.qcm.view;
+package clibom.qcm.view.activities;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import clibom.qcm.R;
+import clibom.qcm.view.dictionnary.FragmentBackStackIdentifier;
+import clibom.qcm.view.fragments.QCMFragment;
 
-public class Statistiques extends AppCompatActivity {
+public class QCM extends AppCompatActivity {
 
+    private static final String TAG = "QCMActivity";
     private TextView mTextMessage;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+
+        if (findViewById(R.id.qcm_frame_layout) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            try {
+                QCMFragment qcmFragment = new QCMFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.qcm_frame_layout, qcmFragment, QCMFragment.TAG);
+                transaction.addToBackStack(FragmentBackStackIdentifier.QCM_FRAGMENT);
+                transaction.commit();
+            } catch (IllegalStateException e) {
+                Log.e(TAG, Log.getStackTraceString(e));
+                getSupportFragmentManager().popBackStack();
+//                displayToastMessage(this, R.string.failed_fragment_transaction);
+            }
+        }
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,7 +66,7 @@ public class Statistiques extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistiques);
+        setContentView(R.layout.activity_qcm);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

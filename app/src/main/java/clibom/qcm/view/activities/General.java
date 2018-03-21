@@ -1,4 +1,4 @@
-package clibom.qcm.view;
+package clibom.qcm.view.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import clibom.qcm.R;
 
-public class QCM extends AppCompatActivity {
+public class General extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -36,7 +36,7 @@ public class QCM extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qcm);
+        setContentView(R.layout.activity_general);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

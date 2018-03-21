@@ -1,4 +1,4 @@
-package clibom.qcm.view;
+package clibom.qcm.view.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import clibom.qcm.R;
 
-public class General extends AppCompatActivity {
+public class Statistiques extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -36,7 +36,7 @@ public class General extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general);
+        setContentView(R.layout.activity_statistiques);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
